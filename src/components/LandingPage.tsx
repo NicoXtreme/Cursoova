@@ -137,19 +137,52 @@ export function LandingPage({ setCurrentPage, moduleProgress }: LandingPageProps
 
       {/* CTA Section */}
       <div className="container mx-auto px-6 py-16">
-        <div className="max-w-4xl mx-auto bg-gradient-to-r from-[#98FF98]/10 to-[#00D9FF]/10 border border-[#98FF98]/20 rounded-2xl p-8 text-center">
-          <h2 className="text-white mb-4">
-            ¿Listo para comenzar?
-          </h2>
-          <p className="text-gray-300 mb-6">
-            Inicia tu aprendizaje con el Módulo 1 y descubre cómo transformar la educación virtual con automatización.
-          </p>
-          <button
-            onClick={() => setCurrentPage('module1')}
-            className="bg-gradient-to-r from-[#98FF98] to-[#00D9FF] text-[#0A0E27] px-8 py-3 rounded-lg hover:opacity-90 transition-opacity"
-          >
-            Comenzar Módulo 1
-          </button>
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-[#151B3D] rounded-2xl overflow-hidden border border-gray-800">
+            {/* Header */}
+            <div className="bg-gradient-to-r from-[#98FF98]/10 to-[#00D9FF]/10 border-b border-gray-800 p-6">
+              <h2 className="text-white mb-2">
+                Introducción al Curso
+              </h2>
+              <p className="text-gray-400">
+                Revisa la guía de introducción antes de comenzar con los módulos
+              </p>
+            </div>
+
+            {/* PDF Viewer */}
+            <div className="aspect-[4/5] bg-black flex items-center justify-center">
+              <div className="text-center p-8">
+                <div className="text-gray-400 mb-2">
+                  <BookOpen className="w-16 h-16 mx-auto mb-4 opacity-50" />
+                </div>
+                <p className="text-gray-500 text-sm mb-2">PDF Placeholder</p>
+                <p className="text-gray-600 text-xs">
+                  Reemplaza el URL en el código con tu documento PDF
+                </p>
+                <p className="text-gray-600 text-xs mt-2">
+                  Ejemplo: https://tu-servidor.com/introduccion.pdf
+                </p>
+              </div>
+              {/* Uncomment and replace with your PDF URL:
+              <iframe
+                src="URL_DE_TU_PDF_AQUI"
+                title="Introducción al Curso"
+                className="w-full h-full"
+                frameBorder="0"
+              />
+              */}
+            </div>
+
+            {/* CTA Button */}
+            <div className="p-6 bg-gradient-to-r from-[#98FF98]/5 to-[#00D9FF]/5 border-t border-gray-800 text-center">
+              <button
+                onClick={() => setCurrentPage('module1')}
+                className="bg-gradient-to-r from-[#98FF98] to-[#00D9FF] text-[#0A0E27] px-8 py-3 rounded-lg hover:opacity-90 transition-opacity"
+              >
+                Comenzar Módulo 1
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

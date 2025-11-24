@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ChevronLeft, ChevronRight, CheckCircle2, Circle, Play } from 'lucide-react';
+import { ChevronLeft, ChevronRight, CheckCircle2, Circle, Play, BookOpen, Volume2, ImageIcon } from 'lucide-react';
 import { Page } from '../App';
 import { MatchingActivity } from './activities/MatchingActivity';
 import { ADDIEActivity } from './activities/ADDIEActivity';
@@ -16,81 +16,67 @@ const moduleData = {
   1: {
     title: 'Fundamentos de OVA y LMS',
     activities: [
-      { id: 1, title: 'Introducción a OVA', type: 'video' as const },
-      { id: 2, title: 'Sistemas de Gestión LMS', type: 'video' as const },
-      { id: 3, title: 'Metadatos y Estándares', type: 'video' as const },
-      { id: 4, title: 'Auto-Evaluación: Conceptos Clave', type: 'activity' as const },
+      { id: 1, title: 'Introducción a los OVA, LMS y Automatización', type: 'video' as const },
+      { id: 2, title: 'Los OVAs', type: 'pdf' as const },
+      { id: 3, title: 'LMS', type: 'pdfAudio' as const },
+      { id: 4, title: 'N8N', type: 'video' as const },
+      { id: 5, title: 'Cuadro Comparativo de Herramientas', type: 'image' as const },
+      { id: 6, title: 'Auto-Evaluación: Conceptos Clave', type: 'activity' as const },
     ],
     content: {
       1: {
-        title: 'Introducción a OVA',
+        title: 'Introducción a los OVA, LMS y Automatización',
         video: 'https://www.youtube.com/embed/VIDEO_ID_AQUI',
         notes: `
-          <h3>¿Qué es un Objeto Virtual de Aprendizaje (OVA)?</h3>
-          <p>Un OVA es un recurso digital diseñado para facilitar el aprendizaje de manera autónoma e interactiva. Sus características principales son:</p>
-          <ul>
-            <li><strong>Reutilizable:</strong> Puede usarse en diferentes contextos educativos</li>
-            <li><strong>Interactivo:</strong> Permite la participación activa del estudiante</li>
-            <li><strong>Autodidacta:</strong> Facilita el aprendizaje sin intervención directa del instructor</li>
-            <li><strong>Modular:</strong> Puede combinarse con otros objetos de aprendizaje</li>
-          </ul>
+          <h3>Los Tres Pilares de la Educación Digital</h3>
+          <p>En la era digital, la educación se cimienta sobre tres pilares esenciales que garantizan eficiencia y calidad:</p>
           
-          <h3>Componentes de un OVA</h3>
-          <ul>
-            <li>Objetivo de aprendizaje claro</li>
-            <li>Contenido multimedia (videos, animaciones, textos)</li>
-            <li>Actividades interactivas</li>
-            <li>Evaluación del aprendizaje</li>
-            <li>Metadatos descriptivos</li>
-          </ul>
+          <h3>1. Los OVA (Objetos Virtuales de Aprendizaje)</h3>
+          <p>Son los recursos digitales fundamentales (videos, infografías, simuladores) diseñados para ser reutilizables y con una clara intención educativa. Son el contenido que consumes.</p>
+          
+          <h3>2. El LMS (Learning Management System)</h3>
+          <p>Es la plataforma central (como Moodle o Canvas) que organiza, administra y distribuye esos OVAs. Es el aula virtual donde interactúas.</p>
+          
+          <h3>3. La Automatización</h3>
+          <p>Es el motor invisible que optimiza procesos como la calificación, el seguimiento del progreso y las notificaciones. Permite que dediques menos tiempo a lo administrativo y más a lo pedagógico.</p>
         `,
       },
       2: {
-        title: 'Sistemas de Gestión LMS',
+        title: 'Los OVAs',
+        pdfUrl: 'URL_DE_TU_PDF_AQUI',
+      },
+      3: {
+        title: 'LMS',
+        pdfUrl: 'URL_DE_TU_PDF_AQUI',
+        audioUrl: 'URL_DE_TU_AUDIO_AQUI',
+      },
+      4: {
+        title: 'N8N',
         video: 'https://www.youtube.com/embed/VIDEO_ID_AQUI',
         notes: `
-          <h3>Learning Management System (LMS)</h3>
-          <p>Un LMS es una plataforma digital que facilita la gestión, distribución y seguimiento de actividades de formación. Ejemplos populares incluyen:</p>
+          <h3>¿Qué es N8N?</h3>
+          <p>N8N (que proviene de "nodemation") es una poderosa herramienta de automatización de flujo de trabajo diseñada para conectar aplicaciones y servicios sin necesidad de codificación compleja. A diferencia de soluciones propietarias, su principal atractivo es ser de código abierto (open source), ofreciendo una gran flexibilidad y control.</p>
+          
+          <h3>Funcionamiento</h3>
+          <p>La esencia de N8N radica en su enfoque visual:</p>
+          
           <ul>
-            <li><strong>Moodle:</strong> Plataforma open-source líder en educación</li>
-            <li><strong>Canvas:</strong> Sistema moderno enfocado en UX</li>
-            <li><strong>Blackboard:</strong> Solución empresarial robusta</li>
-            <li><strong>Google Classroom:</strong> Integrado con GSuite</li>
+            <li><strong>Flujos de Trabajo Basados en Nodos:</strong> Permite construir automatizaciones arrastrando y conectando nodos en un lienzo. Cada nodo representa una aplicación, un servicio (como Slack, Google Sheets o un servicio de correo electrónico), o una función específica (como formatear datos, establecer condiciones o realizar bucles).</li>
+            <li><strong>Activadores (Triggers):</strong> Cada flujo de trabajo comienza con un nodo de activación (trigger), que puede ser un evento específico (ej. "llegó un nuevo email", "se actualizó una fila en la base de datos") o un horario programado.</li>
+            <li><strong>Transformación de Datos:</strong> Los datos fluyen de un nodo al siguiente, donde pueden ser modificados, filtrados o enriquecidos antes de pasar a la acción final.</li>
           </ul>
           
-          <h3>Funciones Principales de un LMS</h3>
+          <h3>Ventajas Clave</h3>
           <ul>
-            <li>Gestión de usuarios y roles (estudiantes, instructores, administradores)</li>
-            <li>Organización de contenidos por cursos y módulos</li>
-            <li>Seguimiento del progreso y calificaciones</li>
-            <li>Comunicación (foros, mensajería, anuncios)</li>
-            <li>Generación de reportes y analíticas</li>
+            <li><strong>Código Abierto y Autoalojamiento:</strong> Permite a los usuarios instalar y ejecutar N8N en sus propios servidores (self-hosted). Esto proporciona máximo control sobre los datos y reduce costos a largo plazo.</li>
+            <li><strong>Amplia Conectividad:</strong> Ofrece cientos de integraciones prediseñadas con las aplicaciones más populares (CRM, bases de datos, redes sociales, etc.) y la capacidad de conectarse a cualquier API web.</li>
+            <li><strong>Flexibilidad:</strong> Es ideal para escenarios complejos que requieren lógica condicional avanzada, manipulación de datos y bucles, funcionalidades que a menudo son limitadas en otras herramientas de automatización visual.</li>
           </ul>
         `,
       },
-      3: {
-        title: 'Metadatos y Estándares',
-        video: 'https://www.youtube.com/embed/VIDEO_ID_AQUI',
-        notes: `
-          <h3>Importancia de los Metadatos</h3>
-          <p>Los metadatos son información estructurada que describe un OVA, facilitando su búsqueda, catalogación y reutilización.</p>
-          
-          <h3>Estándares de Metadatos</h3>
-          <ul>
-            <li><strong>SCORM (Sharable Content Object Reference Model):</strong> Estándar más utilizado para e-learning</li>
-            <li><strong>LOM (Learning Object Metadata):</strong> Describe recursos educativos</li>
-            <li><strong>xAPI (Experience API):</strong> Rastrea experiencias de aprendizaje en múltiples plataformas</li>
-          </ul>
-          
-          <h3>Categorías de Metadatos</h3>
-          <ul>
-            <li><strong>General:</strong> Título, idioma, descripción, palabras clave</li>
-            <li><strong>Ciclo de vida:</strong> Versión, estado, autores</li>
-            <li><strong>Técnico:</strong> Formato, tamaño, requisitos</li>
-            <li><strong>Educativo:</strong> Tipo de recurso, nivel, contexto</li>
-            <li><strong>Derechos:</strong> Licencias, restricciones de uso</li>
-          </ul>
-        `,
+      5: {
+        title: 'Cuadro Comparativo de Herramientas',
+        imageUrl: 'URL_DE_TU_IMAGEN_AQUI',
       },
     },
   },
@@ -453,6 +439,24 @@ export function ModuleView({ moduleNumber, progress, updateProgress, setCurrentP
                         Video
                       </div>
                     )}
+                    {act.type === 'pdf' && (
+                      <div className="flex items-center gap-1 text-xs text-gray-500 mt-1">
+                        <BookOpen className="w-3 h-3" />
+                        PDF
+                      </div>
+                    )}
+                    {act.type === 'pdfAudio' && (
+                      <div className="flex items-center gap-1 text-xs text-gray-500 mt-1">
+                        <BookOpen className="w-3 h-3" />
+                        PDF + Audio
+                      </div>
+                    )}
+                    {act.type === 'image' && (
+                      <div className="flex items-center gap-1 text-xs text-gray-500 mt-1">
+                        <ImageIcon className="w-3 h-3" />
+                        Imagen
+                      </div>
+                    )}
                     {act.type === 'activity' && (
                       <div className="text-xs text-[#00D9FF] mt-1">
                         Actividad Interactiva
@@ -512,11 +516,158 @@ export function ModuleView({ moduleNumber, progress, updateProgress, setCurrentP
               </div>
 
               {/* Notes Content */}
-              <div className="bg-[#151B3D] rounded-2xl p-8 border border-gray-800">
-                <div 
-                  className="prose prose-invert prose-lg max-w-none"
-                  dangerouslySetInnerHTML={{ __html: contentData.notes }}
-                />
+              {contentData.notes && (
+                <div className="bg-[#151B3D] rounded-2xl p-8 border border-gray-800">
+                  <div 
+                    className="prose prose-invert prose-lg max-w-none"
+                    dangerouslySetInnerHTML={{ __html: contentData.notes }}
+                  />
+                </div>
+              )}
+            </div>
+          )}
+
+          {activity?.type === 'pdf' && contentData && (
+            <div className="bg-[#151B3D] rounded-2xl overflow-hidden border border-gray-800">
+              <div className="p-6 border-b border-gray-800">
+                <h1 className="text-white mb-2">{contentData.title}</h1>
+                <p className="text-gray-400 text-sm">Documento en formato PDF</p>
+              </div>
+              <div className="aspect-[4/5] bg-black flex items-center justify-center">
+                {contentData.pdfUrl === 'URL_DE_TU_PDF_AQUI' ? (
+                  <div className="text-center p-8">
+                    <div className="text-gray-400 mb-2">
+                      <BookOpen className="w-16 h-16 mx-auto mb-4 opacity-50" />
+                    </div>
+                    <p className="text-gray-500 text-sm mb-2">PDF Placeholder</p>
+                    <p className="text-gray-600 text-xs">
+                      Reemplaza el URL en el código con tu documento PDF
+                    </p>
+                    <p className="text-gray-600 text-xs mt-2">
+                      Ejemplo: https://tu-servidor.com/documento.pdf
+                    </p>
+                  </div>
+                ) : (
+                  <iframe
+                    src={contentData.pdfUrl}
+                    title={contentData.title}
+                    className="w-full h-full"
+                    frameBorder="0"
+                  />
+                )}
+              </div>
+              <div className="p-6 border-t border-gray-800">
+                <button
+                  onClick={handleActivityComplete}
+                  className="bg-gradient-to-r from-[#98FF98] to-[#00D9FF] text-[#0A0E27] px-6 py-2 rounded-lg hover:opacity-90 transition-opacity"
+                >
+                  Marcar como Completado
+                </button>
+              </div>
+            </div>
+          )}
+
+          {activity?.type === 'pdfAudio' && contentData && (
+            <div className="space-y-6">
+              {/* PDF Viewer */}
+              <div className="bg-[#151B3D] rounded-2xl overflow-hidden border border-gray-800">
+                <div className="p-6 border-b border-gray-800">
+                  <h1 className="text-white mb-2">{contentData.title}</h1>
+                  <p className="text-gray-400 text-sm">Documento PDF con audio complementario</p>
+                </div>
+                <div className="aspect-[4/5] bg-black flex items-center justify-center">
+                  {contentData.pdfUrl === 'URL_DE_TU_PDF_AQUI' ? (
+                    <div className="text-center p-8">
+                      <div className="text-gray-400 mb-2">
+                        <BookOpen className="w-16 h-16 mx-auto mb-4 opacity-50" />
+                      </div>
+                      <p className="text-gray-500 text-sm mb-2">PDF Placeholder</p>
+                      <p className="text-gray-600 text-xs">
+                        Reemplaza el URL en el código con tu documento PDF
+                      </p>
+                    </div>
+                  ) : (
+                    <iframe
+                      src={contentData.pdfUrl}
+                      title={contentData.title}
+                      className="w-full h-full"
+                      frameBorder="0"
+                    />
+                  )}
+                </div>
+              </div>
+
+              {/* Audio Player */}
+              <div className="bg-[#151B3D] rounded-2xl p-6 border border-gray-800">
+                <div className="flex items-center gap-3 mb-4">
+                  <Volume2 className="w-5 h-5 text-[#00D9FF]" />
+                  <h3 className="text-white">Audio Complementario</h3>
+                </div>
+                {contentData.audioUrl === 'URL_DE_TU_AUDIO_AQUI' ? (
+                  <div className="bg-[#0A0E27] rounded-lg p-6 text-center">
+                    <p className="text-gray-500 text-sm mb-2">Audio Placeholder</p>
+                    <p className="text-gray-600 text-xs">
+                      Reemplaza el URL con tu archivo de audio (MP3, WAV, etc.)
+                    </p>
+                  </div>
+                ) : (
+                  <audio 
+                    controls 
+                    className="w-full"
+                    style={{ height: '40px' }}
+                  >
+                    <source src={contentData.audioUrl} />
+                    Tu navegador no soporta el elemento de audio.
+                  </audio>
+                )}
+              </div>
+
+              <div className="bg-[#151B3D] rounded-2xl p-6 border border-gray-800">
+                <button
+                  onClick={handleActivityComplete}
+                  className="bg-gradient-to-r from-[#98FF98] to-[#00D9FF] text-[#0A0E27] px-6 py-2 rounded-lg hover:opacity-90 transition-opacity"
+                >
+                  Marcar como Completado
+                </button>
+              </div>
+            </div>
+          )}
+
+          {activity?.type === 'image' && contentData && (
+            <div className="bg-[#151B3D] rounded-2xl overflow-hidden border border-gray-800">
+              <div className="p-6 border-b border-gray-800">
+                <h1 className="text-white mb-2">{contentData.title}</h1>
+                <p className="text-gray-400 text-sm">Infografía comparativa</p>
+              </div>
+              <div className="bg-black flex items-center justify-center min-h-[500px] p-8">
+                {contentData.imageUrl === 'URL_DE_TU_IMAGEN_AQUI' ? (
+                  <div className="text-center p-8">
+                    <div className="text-gray-400 mb-2">
+                      <ImageIcon className="w-16 h-16 mx-auto mb-4 opacity-50" />
+                    </div>
+                    <p className="text-gray-500 text-sm mb-2">Imagen Placeholder</p>
+                    <p className="text-gray-600 text-xs">
+                      Reemplaza el URL en el código con tu imagen
+                    </p>
+                    <p className="text-gray-600 text-xs mt-2">
+                      Formatos soportados: JPG, PNG, SVG
+                    </p>
+                  </div>
+                ) : (
+                  <img 
+                    src={contentData.imageUrl} 
+                    alt={contentData.title}
+                    className="max-w-full h-auto rounded-lg"
+                  />
+                )}
+              </div>
+              <div className="p-6 border-t border-gray-800">
+                <button
+                  onClick={handleActivityComplete}
+                  className="bg-gradient-to-r from-[#98FF98] to-[#00D9FF] text-[#0A0E27] px-6 py-2 rounded-lg hover:opacity-90 transition-opacity"
+                >
+                  Marcar como Completado
+                </button>
               </div>
             </div>
           )}

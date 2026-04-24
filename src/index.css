@@ -1535,3 +1535,63 @@ html {
     opacity: .5;
   }
 }
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* Video Player Loading State */
+.video-container {
+  position: relative;
+  background: linear-gradient(
+    90deg,
+    #0a0e27 25%,
+    #151b3d 50%,
+    #0a0e27 75%
+  );
+  background-size: 1000px 100%;
+}
+
+.video-container.loading {
+  animation: shimmer 2s infinite;
+}
+
+/* Video Player Loading Spinner */
+.video-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+.video-spinner-icon {
+  width: 48px;
+  height: 48px;
+  border: 3px solid rgba(0, 217, 255, 0.2);
+  border-top-color: #00d9ff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Video Iframe Styling */
+iframe {
+  border-radius: 0.625rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+}
+
+/* Custom Audio Player */
+audio {
+  filter: invert(0.8) hue-rotate(180deg);
+}

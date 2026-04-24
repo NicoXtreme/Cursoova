@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ChevronLeft, ChevronRight, CheckCircle2, Circle, Play, BookOpen, Volume2, ImageIcon } from 'lucide-react';
+import { ChevronLeft, ChevronRight, CheckCircle2, Circle, Play, BookOpen, Volume2, ImageIcon, Loader } from 'lucide-react';
 import { Page } from '../App';
 import { MatchingActivity } from './activities/MatchingActivity';
 import { ADDIEActivity } from './activities/ADDIEActivity';
@@ -16,17 +16,17 @@ const moduleData = {
   1: {
     title: 'Fundamentos de OVA y LMS',
     activities: [
-      { id: 1, title: 'Introducción a los OVA, LMS y Automatización', type: 'video' as const },
-      { id: 2, title: 'Los OVAs', type: 'pdf' as const },
-      { id: 3, title: 'LMS', type: 'pdfAudio' as const },
-      { id: 4, title: 'N8N', type: 'video' as const },
-      { id: 5, title: 'Cuadro Comparativo de Herramientas', type: 'image' as const },
+      { id: 1, title: 'Clase 1: Introducción a los OVA, LMS y Automatización', type: 'video' as const },
+      { id: 2, title: 'Clase 2: Los OVAs', type: 'video' as const },
+      { id: 3, title: 'Clase 3: LMS', type: 'pdfAudio' as const },
+      { id: 4, title: 'Clase 4: N8N', type: 'video' as const },
+      { id: 5, title: 'Clase Extra: Mapa Comparativo de Herramientas', type: 'image' as const },
       { id: 6, title: 'Auto-Evaluación: Conceptos Clave', type: 'activity' as const },
     ],
     content: {
       1: {
-        title: 'Introducción a los OVA, LMS y Automatización',
-        video: 'https://www.youtube.com/embed/VIDEO_ID_AQUI',
+        title: 'Clase 1: Introducción a los OVA, LMS y Automatización',
+        video: 'https://www.enlacedigital.pedagogiavirtual.com/ovas/curso_ovas_n8n/content/module_1/class_1.mp4',
         notes: `
           <h3>Los Tres Pilares de la Educación Digital</h3>
           <p>En la era digital, la educación se cimienta sobre tres pilares esenciales que garantizan eficiencia y calidad:</p>
@@ -42,17 +42,39 @@ const moduleData = {
         `,
       },
       2: {
-        title: 'Los OVAs',
-        pdfUrl: 'URL_DE_TU_PDF_AQUI',
+        title: 'Clase 2: Los OVAs',
+        video: 'https://www.enlacedigital.pedagogiavirtual.com/ovas/curso_ovas_n8n/content/module_1/class%202.mp4',
+        notes: `
+          <h3>Objetos Virtuales de Aprendizaje (OVAs)</h3>
+          <p>Los OVAs son recursos educativos digitales reutilizables, diseñados con una clara intención pedagógica y un objetivo específico de aprendizaje.</p>
+          
+          <h3>Características Principales</h3>
+          <ul>
+            <li><strong>Reutilizables:</strong> Pueden ser utilizados en diferentes contextos y plataformas</li>
+            <li><strong>Modular:</strong> Componentes independientes que se pueden combinar</li>
+            <li><strong>Interactivos:</strong> Incluyen actividades y retroalimentación</li>
+            <li><strong>Accesibles:</strong> Diseñados para diferentes tipos de aprendices</li>
+          </ul>
+          
+          <h3>Tipos de OVAs</h3>
+          <ul>
+            <li>Videos educativos</li>
+            <li>Infografías interactivas</li>
+            <li>Simuladores</li>
+            <li>Ejercicios prácticos</li>
+            <li>Casos de estudio</li>
+            <li>Recursos multimedia</li>
+          </ul>
+        `,
       },
       3: {
-        title: 'LMS',
-        pdfUrl: 'URL_DE_TU_PDF_AQUI',
-        audioUrl: 'URL_DE_TU_AUDIO_AQUI',
+        title: 'Clase 3: LMS',
+        pdfUrl: 'https://www.enlacedigital.pedagogiavirtual.com/ovas/curso_ovas_n8n/content/module_1/class_3.pdf#toolbar=0',
+        audioUrl: 'https://www.enlacedigital.pedagogiavirtual.com/ovas/curso_ovas_n8n/content/module_1/class_3.ogg',
       },
       4: {
-        title: 'N8N',
-        video: 'https://www.youtube.com/embed/VIDEO_ID_AQUI',
+        title: 'Clase 4: N8N',
+        video: 'https://www.enlacedigital.pedagogiavirtual.com/ovas/curso_ovas_n8n/content/module_1/class_4.mp4',
         notes: `
           <h3>¿Qué es N8N?</h3>
           <p>N8N (que proviene de "nodemation") es una poderosa herramienta de automatización de flujo de trabajo diseñada para conectar aplicaciones y servicios sin necesidad de codificación compleja. A diferencia de soluciones propietarias, su principal atractivo es ser de código abierto (open source), ofreciendo una gran flexibilidad y control.</p>
@@ -75,147 +97,164 @@ const moduleData = {
         `,
       },
       5: {
-        title: 'Cuadro Comparativo de Herramientas',
-        imageUrl: 'URL_DE_TU_IMAGEN_AQUI',
+        title: 'Clase Extra: Mapa Comparativo de Herramientas',
+        imageUrl: 'https://www.enlacedigital.pedagogiavirtual.com/ovas/curso_ovas_n8n/content/module_1/extra_class.jpeg',
       },
     },
   },
   2: {
-    title: 'Diseño Instruccional con ADDIE',
+    title: 'N8N',
     activities: [
-      { id: 1, title: 'Fase 1: Análisis', type: 'video' as const },
-      { id: 2, title: 'Fase 2: Diseño', type: 'video' as const },
-      { id: 3, title: 'Fase 3: Desarrollo', type: 'video' as const },
-      { id: 4, title: 'Fase 4: Implementación', type: 'video' as const },
-      { id: 5, title: 'Fase 5: Evaluación', type: 'video' as const },
-      { id: 6, title: 'Auto-Evaluación: Secuencia ADDIE', type: 'activity' as const },
+      { id: 1, title: 'Clase 1: Diseño Instruccional y Automatización con n8n', type: 'video' as const },
+      { id: 2, title: 'Clase 2: Modelo ADDIE y Conceptos de n8n', type: 'video' as const },
+      { id: 3, title: 'Clase 3: Comienzos con n8n', type: 'video' as const },
+      { id: 4, title: 'Clase 4: Conexión de n8n con Moodle', type: 'video' as const },
+      { id: 5, title: 'Auto-Evaluación: Nodos Clave de n8n', type: 'activity' as const },
     ],
     content: {
       1: {
-        title: 'Fase 1: Análisis',
-        video: 'https://www.youtube.com/embed/VIDEO_ID_AQUI',
+        title: 'Clase 1: Diseño Instruccional y Automatización con n8n',
+        video: 'https://www.enlacedigital.pedagogiavirtual.com/ovas/curso_ovas_n8n/content/module_2/class_1.mp4',
         notes: `
-          <h3>Análisis de Necesidades</h3>
-          <p>La fase de análisis es fundamental para identificar las necesidades educativas y establecer objetivos claros.</p>
+          <h3>Integración del Diseño Instruccional con Automatización</h3>
+          <p>La combinación del diseño instruccional ADDIE con herramientas como n8n permite crear experiencias educativas automatizadas y eficientes.</p>
           
-          <h3>Actividades Clave</h3>
+          <h3>Beneficios de la Automatización en Educación</h3>
           <ul>
-            <li>Identificar el problema o necesidad educativa</li>
-            <li>Definir el público objetivo (edad, nivel, conocimientos previos)</li>
-            <li>Establecer objetivos de aprendizaje medibles</li>
-            <li>Analizar restricciones (tiempo, recursos, tecnología)</li>
-            <li>Identificar el contexto de aprendizaje</li>
+            <li><strong>Eficiencia:</strong> Reduce tareas administrativas repetitivas</li>
+            <li><strong>Escalabilidad:</strong> Permite atender más estudiantes sin aumentar recursos</li>
+            <li><strong>Personalización:</strong> Adapta contenidos según el progreso del estudiante</li>
+            <li><strong>Consistencia:</strong> Asegura procesos uniformes en todos los cursos</li>
+            <li><strong>Datos en Tiempo Real:</strong> Monitoreo continuo del desempeño</li>
           </ul>
           
-          <h3>Preguntas Guía</h3>
+          <h3>Casos de Uso en LMS</h3>
           <ul>
-            <li>¿Qué necesitan aprender los estudiantes?</li>
-            <li>¿Por qué es importante este aprendizaje?</li>
-            <li>¿Cuál es el nivel actual de conocimiento?</li>
-            <li>¿Qué recursos están disponibles?</li>
+            <li>Inscripción automática de estudiantes</li>
+            <li>Envío de recordatorios de tareas</li>
+            <li>Calificación automática de evaluaciones</li>
+            <li>Generación de certificados</li>
+            <li>Reportes de progreso automatizados</li>
           </ul>
         `,
       },
       2: {
-        title: 'Fase 2: Diseño',
-        video: 'https://www.youtube.com/embed/VIDEO_ID_AQUI',
+        title: 'Clase 2: Modelo ADDIE y Conceptos de n8n',
+        video: 'https://www.enlacedigital.pedagogiavirtual.com/ovas/curso_ovas_n8n/content/module_2/class_2.mp4',
         notes: `
-          <h3>Diseño de la Experiencia Educativa</h3>
-          <p>En esta fase se planifica cómo se estructurará el contenido y las actividades de aprendizaje.</p>
+          <h3>ADDIE + n8n: Una Combinación Poderosa</h3>
+          <p>El modelo ADDIE proporciona la estructura pedagógica, mientras que n8n proporciona las herramientas técnicas para implementarla.</p>
           
-          <h3>Elementos a Diseñar</h3>
+          <h3>Análisis con n8n</h3>
           <ul>
-            <li><strong>Objetivos de Aprendizaje:</strong> Específicos, medibles, alcanzables</li>
-            <li><strong>Secuencia de Contenidos:</strong> Orden lógico y progresivo</li>
-            <li><strong>Estrategias Pedagógicas:</strong> Métodos de enseñanza apropiados</li>
-            <li><strong>Actividades de Aprendizaje:</strong> Ejercicios, casos, simulaciones</li>
-            <li><strong>Evaluaciones:</strong> Formativas y sumativas</li>
-            <li><strong>Recursos Multimedia:</strong> Videos, infografías, interactivos</li>
+            <li>Recopilación automatizada de datos de necesidades</li>
+            <li>Análisis de encuestas con integraciones</li>
+            <li>Mapeo de requisitos técnicos</li>
           </ul>
           
-          <h3>Storyboard y Wireframes</h3>
-          <p>Se recomienda crear bocetos visuales que muestren la estructura y flujo del contenido.</p>
+          <h3>Diseño con n8n</h3>
+          <ul>
+            <li>Flujos de aprobación de contenidos</li>
+            <li>Gestión de versiones de materiales</li>
+            <li>Sincronización de calendarios</li>
+          </ul>
+          
+          <h3>Desarrollo y Entrega con n8n</h3>
+          <ul>
+            <li>Distribución automática de recursos</li>
+            <li>Activación programada de contenidos</li>
+            <li>Notificaciones de disponibilidad</li>
+          </ul>
+          
+          <h3>Evaluación Continua</h3>
+          <ul>
+            <li>Recopilación automática de métricas</li>
+            <li>Alertas de bajo desempeño</li>
+            <li>Generación de reportes analíticos</li>
+          </ul>
         `,
       },
       3: {
-        title: 'Fase 3: Desarrollo',
-        video: 'https://www.youtube.com/embed/VIDEO_ID_AQUI',
+        title: 'Clase 3: Comienzos con n8n',
+        video: 'https://www.enlacedigital.pedagogiavirtual.com/ovas/curso_ovas_n8n/content/module_2/class_3.mp4',
         notes: `
-          <h3>Producción de Contenidos</h3>
-          <p>En esta fase se crean y producen todos los materiales diseñados en la etapa anterior.</p>
+          <h3>Primeros Pasos en n8n</h3>
+          <p>Aprende cómo crear tu primer flujo de trabajo en n8n, desde la configuración inicial hasta la activación.</p>
           
-          <h3>Actividades de Desarrollo</h3>
+          <h3>Instalación y Configuración</h3>
           <ul>
-            <li>Producir contenidos multimedia (videos, animaciones, gráficos)</li>
-            <li>Desarrollar actividades interactivas</li>
-            <li>Crear evaluaciones y rúbricas</li>
-            <li>Integrar contenidos en el LMS</li>
-            <li>Configurar metadatos y estándares</li>
+            <li>Descarga e instalación de n8n</li>
+            <li>Configuración inicial</li>
+            <li>Acceso a la interfaz web</li>
+            <li>Creación de cuenta y credenciales</li>
           </ul>
           
-          <h3>Herramientas Recomendadas</h3>
+          <h3>Conceptos Básicos</h3>
           <ul>
-            <li><strong>Genially / Canva:</strong> Para presentaciones interactivas</li>
-            <li><strong>Articulate / Adobe Captivate:</strong> Para OVAs complejos</li>
-            <li><strong>H5P:</strong> Contenido interactivo HTML5</li>
-            <li><strong>OBS Studio:</strong> Grabación de videos educativos</li>
+            <li><strong>Workflow:</strong> Tu automatización completa</li>
+            <li><strong>Nodes:</strong> Bloques de construcción</li>
+            <li><strong>Triggers:</strong> Eventos que inician el flujo</li>
+            <li><strong>Connections:</strong> Enlaces entre nodos</li>
+          </ul>
+          
+          <h3>Tu Primer Flujo</h3>
+          <ul>
+            <li>Seleccionar un trigger simple (manual o schedule)</li>
+            <li>Agregar un nodo de acción</li>
+            <li>Configurar parámetros básicos</li>
+            <li>Probar y activar</li>
+          </ul>
+          
+          <h3>Mejores Prácticas</h3>
+          <ul>
+            <li>Documentar tus flujos</li>
+            <li>Usar nombres descriptivos</li>
+            <li>Probar antes de activar</li>
+            <li>Monitorear ejecuciones</li>
           </ul>
         `,
       },
       4: {
-        title: 'Fase 4: Implementación',
-        video: 'https://www.youtube.com/embed/VIDEO_ID_AQUI',
+        title: 'Clase 4: Conexión de n8n con Moodle',
+        video: 'https://www.enlacedigital.pedagogiavirtual.com/ovas/curso_ovas_n8n/content/module_2/class_4.mp4',
         notes: `
-          <h3>Despliegue del Curso</h3>
-          <p>Esta fase implica poner el contenido a disposición de los estudiantes en el LMS.</p>
+          <h3>Integrando n8n con Moodle</h3>
+          <p>Moodle proporciona APIs potentes que permiten la automatización a través de n8n.</p>
           
-          <h3>Pasos de Implementación</h3>
+          <h3>Requisitos Previos</h3>
           <ul>
-            <li>Cargar contenidos al LMS</li>
-            <li>Configurar permisos y accesos</li>
-            <li>Realizar pruebas técnicas (navegación, multimedia, compatibilidad)</li>
-            <li>Capacitar a instructores y estudiantes</li>
-            <li>Lanzar el curso oficialmente</li>
-            <li>Brindar soporte técnico inicial</li>
+            <li>Acceso administrativo a tu instancia de Moodle</li>
+            <li>Token de acceso API de Moodle</li>
+            <li>URL de tu instancia Moodle</li>
+            <li>Credenciales de n8n configuradas</li>
           </ul>
           
-          <h3>Checklist Pre-Lanzamiento</h3>
+          <h3>Principales Integraciones</h3>
           <ul>
-            <li>✓ Todos los enlaces funcionan correctamente</li>
-            <li>✓ Videos y multimedia se reproducen sin problemas</li>
-            <li>✓ Evaluaciones están configuradas correctamente</li>
-            <li>✓ Fechas de entrega están programadas</li>
-            <li>✓ Instrucciones son claras y completas</li>
-          </ul>
-        `,
-      },
-      5: {
-        title: 'Fase 5: Evaluación',
-        video: 'https://www.youtube.com/embed/VIDEO_ID_AQUI',
-        notes: `
-          <h3>Evaluación y Mejora Continua</h3>
-          <p>La última fase evalúa la efectividad del curso y busca oportunidades de mejora.</p>
-          
-          <h3>Tipos de Evaluación</h3>
-          <ul>
-            <li><strong>Formativa:</strong> Durante el curso, para ajustes inmediatos</li>
-            <li><strong>Sumativa:</strong> Al final, para medir logro de objetivos</li>
-            <li><strong>De Reacción:</strong> Satisfacción de los estudiantes (encuestas)</li>
-            <li><strong>De Aprendizaje:</strong> Conocimientos adquiridos (exámenes)</li>
-            <li><strong>De Transferencia:</strong> Aplicación en contextos reales</li>
+            <li><strong>Gestión de Usuarios:</strong> Crear, actualizar, eliminar usuarios</li>
+            <li><strong>Cursos:</strong> Crear cursos, agregar estudiantes</li>
+            <li><strong>Calificaciones:</strong> Obtener y actualizar calificaciones</li>
+            <li><strong>Asignaciones:</strong> Crear tareas y acceder a envíos</li>
+            <li><strong>Foros:</strong> Automatizar publicaciones y respuestas</li>
           </ul>
           
-          <h3>Fuentes de Datos</h3>
+          <h3>Flujos Comunes Moodle + n8n</h3>
           <ul>
-            <li>Encuestas de satisfacción</li>
-            <li>Resultados de evaluaciones</li>
-            <li>Analíticas del LMS (tiempo, completación, interacciones)</li>
-            <li>Retroalimentación cualitativa</li>
-            <li>Observación directa</li>
+            <li>Inscribir usuarios automáticamente desde Google Forms</li>
+            <li>Enviar recordatorios de tareas pendientes</li>
+            <li>Generar reportes de progreso semanales</li>
+            <li>Crear backup automático de datos</li>
+            <li>Sincronizar calificaciones con sistemas externos</li>
           </ul>
           
-          <h3>Ciclo de Mejora</h3>
-          <p>Los resultados de la evaluación alimentan un nuevo ciclo ADDIE para optimizar continuamente el curso.</p>
+          <h3>Seguridad y Buenas Prácticas</h3>
+          <ul>
+            <li>Usar tokens con permisos limitados</li>
+            <li>Encriptar datos sensibles</li>
+            <li>Auditar flujos regularmente</li>
+            <li>Implementar manejo de errores</li>
+            <li>Documentar cambios en flujos</li>
+          </ul>
         `,
       },
     },
@@ -358,6 +397,7 @@ const moduleData = {
 
 export function ModuleView({ moduleNumber, progress, updateProgress, setCurrentPage }: ModuleViewProps) {
   const [currentActivity, setCurrentActivity] = useState(1);
+  const [isVideoLoading, setIsVideoLoading] = useState(true);
   const module = moduleData[moduleNumber as keyof typeof moduleData];
   const activity = module.activities.find(a => a.id === currentActivity);
   const contentData = module.content[currentActivity as keyof typeof module.content];
@@ -477,7 +517,12 @@ export function ModuleView({ moduleNumber, progress, updateProgress, setCurrentP
             <div className="space-y-8">
               {/* Video Player */}
               <div className="bg-[#151B3D] rounded-2xl overflow-hidden border border-gray-800">
-                <div className="aspect-video bg-black flex items-center justify-center">
+                <div className={`aspect-video bg-black flex items-center justify-center relative video-container ${isVideoLoading ? 'loading' : ''}`}>
+                  {isVideoLoading && (
+                    <div className="video-spinner">
+                      <div className="video-spinner-icon"></div>
+                    </div>
+                  )}
                   {contentData.video.includes('VIDEO_ID_AQUI') ? (
                     <div className="text-center p-8">
                       <div className="text-gray-400 mb-2">
@@ -501,6 +546,7 @@ export function ModuleView({ moduleNumber, progress, updateProgress, setCurrentP
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
                       className="w-full h-full"
+                      onLoad={() => setIsVideoLoading(false)}
                     />
                   )}
                 </div>
@@ -611,14 +657,15 @@ export function ModuleView({ moduleNumber, progress, updateProgress, setCurrentP
                     </p>
                   </div>
                 ) : (
-                  <audio 
-                    controls 
-                    className="w-full"
-                    style={{ height: '40px' }}
-                  >
-                    <source src={contentData.audioUrl} />
-                    Tu navegador no soporta el elemento de audio.
-                  </audio>
+                  <div className="bg-gradient-to-r from-[#00D9FF]/10 to-[#98FF98]/10 rounded-xl p-6 border border-gray-700">
+                    <audio 
+                      controls 
+                      className="w-full accent-[#00D9FF]"
+                    >
+                      <source src={contentData.audioUrl} />
+                      Tu navegador no soporta el elemento de audio.
+                    </audio>
+                  </div>
                 )}
               </div>
 

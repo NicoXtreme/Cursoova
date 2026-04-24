@@ -5,22 +5,22 @@ interface ADDIEActivityProps {
   onComplete: () => void;
 }
 
-const correctOrder = ['Análisis', 'Diseño', 'Desarrollo', 'Implementación', 'Evaluación'];
+const correctOrder = ['Trigger', 'HTTP Request', 'Set', 'Email', 'Webhook'];
 
-const phases = [
-  { id: 'analisis', name: 'Análisis', description: 'Identificar necesidades y objetivos de aprendizaje' },
-  { id: 'diseno', name: 'Diseño', description: 'Planificar la estructura y estrategias pedagógicas' },
-  { id: 'desarrollo', name: 'Desarrollo', description: 'Crear y producir los materiales educativos' },
-  { id: 'implementacion', name: 'Implementación', description: 'Desplegar el curso en la plataforma LMS' },
-  { id: 'evaluacion', name: 'Evaluación', description: 'Medir efectividad y realizar mejoras continuas' },
+const nodes = [
+  { id: 'trigger', name: 'Trigger', description: 'Inicia el flujo de trabajo (ej: Schedule, Manual, Webhook)' },
+  { id: 'httprequest', name: 'HTTP Request', description: 'Realiza una solicitud a una API (ej: Moodle)' },
+  { id: 'set', name: 'Set', description: 'Establece variables y transforma datos' },
+  { id: 'email', name: 'Email', description: 'Envía notificaciones por correo electrónico' },
+  { id: 'webhook', name: 'Webhook', description: 'Retorna datos o dispara eventos externos' },
 ];
 
 export function ADDIEActivity({ onComplete }: ADDIEActivityProps) {
-  const [shuffledPhases] = useState(() => {
-    return [...phases].sort(() => Math.random() - 0.5);
+  const [shuffledNodes] = useState(() => {
+    return [...nodes].sort(() => Math.random() - 0.5);
   });
   
-  const [orderedPhases, setOrderedPhases] = useState<typeof phases>(shuffledPhases);
+  const [orderedNodes, setOrderedNodes] = useState<typeof nodes>(shuffledNodes);
   const [draggedItem, setDraggedItem] = useState<number | null>(null);
   const [isChecked, setIsChecked] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
@@ -34,13 +34,13 @@ export function ADDIEActivity({ onComplete }: ADDIEActivityProps) {
     
     if (draggedItem === null || draggedItem === index) return;
 
-    const newPhases = [...orderedPhases];
-    const draggedPhase = newPhases[draggedItem];
+    const newNodes = [...orderedNodes];
+    const draggedNode = newNodes[draggedItem];
     
-    newPhases.splice(draggedItem, 1);
-    newPhases.splice(index, 0, draggedPhase);
+    newNodes.splice(draggedItem, 1);
+    newNodes.splice(index, 0, draggedNode);
     
-    setOrderedPhases(newPhases);
+    setOrderedNodes(newNodes);
     setDraggedItem(index);
   };
 
@@ -49,7 +49,7 @@ export function ADDIEActivity({ onComplete }: ADDIEActivityProps) {
   };
 
   const checkOrder = () => {
-    const userOrder = orderedPhases.map(p => p.name);
+    const userOrder = orderedNodes.map(n => n.name);
     const correct = JSON.stringify(userOrder) === JSON.stringify(correctOrder);
     
     setIsChecked(true);
@@ -63,22 +63,22 @@ export function ADDIEActivity({ onComplete }: ADDIEActivityProps) {
   };
 
   const reset = () => {
-    setOrderedPhases([...phases].sort(() => Math.random() - 0.5));
+    setOrderedNodes([...nodes].sort(() => Math.random() - 0.5));
     setIsChecked(false);
     setIsCorrect(false);
   };
 
-  const getPhaseStatus = (phase: typeof phases[0], index: number) => {
+  const getNodeStatus = (node: typeof nodes[0], index: number) => {
     if (!isChecked) return null;
-    return phase.name === correctOrder[index];
+    return node.name === correctOrder[index];
   };
 
   return (
     <div className="bg-[#151B3D] rounded-2xl p-8 border border-gray-800">
       <div className="mb-8">
-        <h2 className="text-white mb-3">Auto-Evaluación: Secuencia ADDIE</h2>
+        <h2 className="text-white mb-3">Auto-Evaluación: Nodos Clave de n8n</h2>
         <p className="text-gray-400">
-          Ordena las fases del modelo ADDIE arrastrándolas a la secuencia correcta. El modelo ADDIE es un proceso sistemático de diseño instruccional.
+          Ordena los nodos de n8n en la secuencia correcta para crear un flujo de trabajo. Arrastra los elementos para organizarlos de forma lógica.
         </p>
       </div>
 
@@ -86,9 +86,9 @@ export function ADDIEActivity({ onComplete }: ADDIEActivityProps) {
         <div className="mb-6 bg-[#98FF98]/10 border border-[#98FF98]/30 rounded-lg p-4 flex items-start gap-3">
           <CheckCircle2 className="w-5 h-5 text-[#98FF98] flex-shrink-0 mt-0.5" />
           <div>
-            <div className="text-[#98FF98] mb-1">¡Perfecto!</div>
+            <div className="text-[#98FF98] mb-1">¡Excelente!</div>
             <p className="text-gray-300 text-sm">
-              Has ordenado correctamente las fases del modelo ADDIE. Este modelo es fundamental para el diseño instruccional efectivo.
+              Has ordenado correctamente los nodos de n8n. Esta es una estructura típica para automatizaciones en sistemas educativos.
             </p>
           </div>
         </div>
@@ -100,20 +100,20 @@ export function ADDIEActivity({ onComplete }: ADDIEActivityProps) {
           <div>
             <div className="text-red-400 mb-1">No es el orden correcto</div>
             <p className="text-gray-300 text-sm">
-              Revisa el contenido del módulo e intenta nuevamente. Recuerda que ADDIE es un proceso secuencial.
+              Revisa el contenido del módulo. Recuerda que siempre comienza con un Trigger y los datos fluyen de un nodo al siguiente.
             </p>
           </div>
         </div>
       )}
 
       <div className="space-y-3 mb-6">
-        {orderedPhases.map((phase, index) => {
-          const status = getPhaseStatus(phase, index);
+        {orderedNodes.map((node, index) => {
+          const status = getNodeStatus(node, index);
           const isBeingDragged = draggedItem === index;
           
           return (
             <div
-              key={phase.id}
+              key={node.id}
               draggable
               onDragStart={() => handleDragStart(index)}
               onDragOver={(e) => handleDragOver(e, index)}
@@ -134,16 +134,16 @@ export function ADDIEActivity({ onComplete }: ADDIEActivityProps) {
                 <div className="flex-1">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-full bg-[#151B3D] flex items-center justify-center text-gray-400 text-sm">
+                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#00D9FF] to-[#98FF98] flex items-center justify-center text-[#0A0E27] text-sm font-bold">
                         {index + 1}
                       </div>
-                      <h3 className="text-white">{phase.name}</h3>
+                      <h3 className="text-white">{node.name}</h3>
                     </div>
                     
                     {status === true && <CheckCircle2 className="w-5 h-5 text-[#98FF98]" />}
                     {status === false && <XCircle className="w-5 h-5 text-red-400" />}
                   </div>
-                  <p className="text-sm text-gray-400 ml-11">{phase.description}</p>
+                  <p className="text-sm text-gray-400 ml-11">{node.description}</p>
                 </div>
               </div>
             </div>
@@ -157,7 +157,7 @@ export function ADDIEActivity({ onComplete }: ADDIEActivityProps) {
             ? isCorrect 
               ? 'Orden correcto ✓'
               : 'Intenta nuevamente'
-            : 'Arrastra las fases para ordenarlas'
+            : 'Arrastra los nodos para ordenarlos'
           }
         </div>
         
@@ -187,7 +187,7 @@ export function ADDIEActivity({ onComplete }: ADDIEActivityProps) {
       {!isCorrect && (
         <div className="mt-6 bg-[#00D9FF]/5 border border-[#00D9FF]/20 rounded-lg p-4">
           <div className="text-sm text-gray-400">
-            <strong className="text-[#00D9FF]">Pista:</strong> El modelo ADDIE comienza identificando las necesidades educativas y termina evaluando la efectividad del programa.
+            <strong className="text-[#00D9FF]">Pista:</strong> Un flujo de trabajo típico comienza con un evento (Trigger), obtiene datos de una API, los procesa, envía notificaciones y finalmente retorna resultados.
           </div>
         </div>
       )}

@@ -18,8 +18,8 @@ const modules = [
   {
     id: 'module2' as const,
     number: 2,
-    title: 'Diseño Instruccional con ADDIE',
-    outcome: 'Aplicar el modelo ADDIE para diseñar experiencias de aprendizaje efectivas, desde el análisis de necesidades hasta la evaluación de resultados.',
+    title: 'N8N',
+    outcome: 'Implementar flujos de automatización educativa utilizando n8n para optimizar procesos en plataformas LMS y mejorar la gestión de contenidos.',
     icon: Lightbulb,
     color: 'from-[#00D9FF] to-[#0099CC]',
   },
@@ -151,26 +151,12 @@ export function LandingPage({ setCurrentPage, moduleProgress }: LandingPageProps
 
             {/* PDF Viewer */}
             <div className="aspect-[4/5] bg-black flex items-center justify-center">
-              <div className="text-center p-8">
-                <div className="text-gray-400 mb-2">
-                  <BookOpen className="w-16 h-16 mx-auto mb-4 opacity-50" />
-                </div>
-                <p className="text-gray-500 text-sm mb-2">PDF Placeholder</p>
-                <p className="text-gray-600 text-xs">
-                  Reemplaza el URL en el código con tu documento PDF
-                </p>
-                <p className="text-gray-600 text-xs mt-2">
-                  Ejemplo: https://tu-servidor.com/introduccion.pdf
-                </p>
-              </div>
-              {/* Uncomment and replace with your PDF URL:
               <iframe
-                src="URL_DE_TU_PDF_AQUI"
+                src="https://www.enlacedigital.pedagogiavirtual.com/ovas/curso_ovas_n8n/content/introduction.pdf#toolbar=0"
                 title="Introducción al Curso"
                 className="w-full h-full"
                 frameBorder="0"
               />
-              */}
             </div>
 
             {/* CTA Button */}
